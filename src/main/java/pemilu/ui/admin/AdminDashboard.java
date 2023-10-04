@@ -4,9 +4,10 @@
  */
 package pemilu.ui.admin;
 
-import pemilu.ui.voter.VoterList;
 import pemilu.ui.MainFrame;
 import pemilu.ui.auth.Login;
+import pemilu.ui.voter.VoterList;
+import pemilu.ui.candidate.CandidateList;
 
 /**
  *
@@ -170,7 +171,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_linkLogoutMouseClicked
 
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
-        // TODO add your handling code here:
+        mainFrame.showView(new AdminDashboard(mainFrame));
     }//GEN-LAST:event_linkHomeMouseClicked
 
     private void linkVoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoterMouseClicked
@@ -178,7 +179,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_linkVoterMouseClicked
 
     private void linkCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkCandidateMouseClicked
-        // TODO add your handling code here:
+        mainFrame.showView(new CandidateList(mainFrame));
     }//GEN-LAST:event_linkCandidateMouseClicked
 
     private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked

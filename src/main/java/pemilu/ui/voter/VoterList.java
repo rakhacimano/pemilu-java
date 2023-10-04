@@ -12,11 +12,11 @@ import pemilu.models.Voter;
 import pemilu.services.DatabaseService;
 import pemilu.services.PasswordGenerator;
 import pemilu.ui.MainFrame;
-import pemilu.ui.admin.AdminDashboard;
 import pemilu.ui.auth.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import pemilu.ui.candidate.CandidateList;
 
 /**
  *
@@ -45,11 +45,11 @@ public class VoterList extends javax.swing.JPanel {
 
         panelSideBar = new javax.swing.JPanel();
         linkLogout = new javax.swing.JLabel();
-        linkHome = new javax.swing.JLabel();
-        linkVoter = new javax.swing.JLabel();
         linkCandidate = new javax.swing.JLabel();
         linkResults = new javax.swing.JLabel();
         titlePage = new javax.swing.JLabel();
+        linkHome = new javax.swing.JLabel();
+        linkVoter = new javax.swing.JLabel();
         labelPage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableVoter = new javax.swing.JTable();
@@ -72,28 +72,6 @@ public class VoterList extends javax.swing.JPanel {
         linkLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 linkLogoutMouseClicked(evt);
-            }
-        });
-
-        linkHome.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkHome.setForeground(new java.awt.Color(230, 230, 230));
-        linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
-        linkHome.setText("Home");
-        linkHome.setIconTextGap(8);
-        linkHome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkHomeMouseClicked(evt);
-            }
-        });
-
-        linkVoter.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkVoter.setForeground(new java.awt.Color(230, 230, 230));
-        linkVoter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/users.png"))); // NOI18N
-        linkVoter.setText("Voter");
-        linkVoter.setIconTextGap(8);
-        linkVoter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkVoterMouseClicked(evt);
             }
         });
 
@@ -129,6 +107,28 @@ public class VoterList extends javax.swing.JPanel {
             }
         });
 
+        linkHome.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        linkHome.setForeground(new java.awt.Color(230, 230, 230));
+        linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
+        linkHome.setText("Home");
+        linkHome.setIconTextGap(8);
+        linkHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkHomeMouseClicked(evt);
+            }
+        });
+
+        linkVoter.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        linkVoter.setForeground(new java.awt.Color(230, 230, 230));
+        linkVoter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/users.png"))); // NOI18N
+        linkVoter.setText("Voter");
+        linkVoter.setIconTextGap(8);
+        linkVoter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkVoterMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelSideBarLayout = new javax.swing.GroupLayout(panelSideBar);
         panelSideBar.setLayout(panelSideBarLayout);
         panelSideBarLayout.setHorizontalGroup(
@@ -136,11 +136,11 @@ public class VoterList extends javax.swing.JPanel {
             .addGroup(panelSideBarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(linkVoter)
+                    .addComponent(linkHome)
                     .addComponent(titlePage)
                     .addComponent(linkResults)
                     .addComponent(linkCandidate)
-                    .addComponent(linkVoter)
-                    .addComponent(linkHome)
                     .addComponent(linkLogout))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -335,16 +335,8 @@ public class VoterList extends javax.swing.JPanel {
         mainFrame.showView(new Login(mainFrame));
     }//GEN-LAST:event_linkLogoutMouseClicked
 
-    private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
-        mainFrame.showView(new AdminDashboard(mainFrame));
-    }//GEN-LAST:event_linkHomeMouseClicked
-
-    private void linkVoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoterMouseClicked
-        mainFrame.showView(new VoterList(mainFrame));
-    }//GEN-LAST:event_linkVoterMouseClicked
-
     private void linkCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkCandidateMouseClicked
-        // TODO add your handling code here:
+        mainFrame.showView(new CandidateList(mainFrame));
     }//GEN-LAST:event_linkCandidateMouseClicked
 
     private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
@@ -360,7 +352,6 @@ public class VoterList extends javax.swing.JPanel {
     }//GEN-LAST:event_labelPageMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String name = inputName.getText();
         String name = inputName.getText();
         String username = inputUsername.getText();
 
@@ -471,6 +462,14 @@ public class VoterList extends javax.swing.JPanel {
         inputName.setText("");
         inputUsername.setText("");
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_linkHomeMouseClicked
+
+    private void linkVoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoterMouseClicked
+        mainFrame.showView(new VoterList(mainFrame));
+    }//GEN-LAST:event_linkVoterMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

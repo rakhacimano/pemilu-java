@@ -20,11 +20,11 @@ import pemilu.ui.auth.Login;
 public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
+        initComponents();
+        
         setTitle("Pemilu Uganda 2023");
 
         showView(new Login(this));
-
-        initComponents();
     }
 
     public void showView(JPanel view) {

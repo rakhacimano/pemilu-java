@@ -6,11 +6,13 @@ package pemilu.ui.auth;
 
 import javax.swing.JOptionPane;
 import pemilu.models.Admin;
+import pemilu.models.Candidate;
 import pemilu.models.User;
 import pemilu.models.Voter;
 import pemilu.services.DatabaseService;
 import pemilu.ui.MainFrame;
 import pemilu.ui.admin.AdminDashboard;
+import pemilu.ui.candidate.CandidateDashboard;
 import pemilu.ui.voter.VoterDashboard;
 
 /**
@@ -78,7 +80,7 @@ public class Login extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                     .addComponent(inputUsername, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -127,6 +129,8 @@ public class Login extends javax.swing.JPanel {
                 mainFrame.showView(new AdminDashboard(mainFrame));
             } else if (loggedInUser instanceof Voter) {
                 mainFrame.showView(new VoterDashboard(mainFrame));
+            } else if (loggedInUser instanceof Candidate) {
+                mainFrame.showView(new CandidateDashboard(mainFrame));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Login gagal. Username atau password salah.");
