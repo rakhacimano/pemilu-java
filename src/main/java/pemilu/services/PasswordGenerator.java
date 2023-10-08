@@ -14,7 +14,7 @@ public class PasswordGenerator {
         Random random = new Random();
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
-        int length = 10; // Panjang kata sandi yang diinginkan
+        int length = 8; // Panjang kata sandi yang diinginkan
 
         for (int i = 0; i < length; i++) {
             int index = random.nextInt(characters.length());
