@@ -6,7 +6,7 @@ package pemilu.ui.candidate;
 
 import pemilu.ui.MainFrame;
 import pemilu.ui.auth.Login;
-import pemilu.ui.voter.VoteCandidate;
+import pemilu.ui.voter.VoterVote;
 
 /**
  *
@@ -136,7 +136,7 @@ public class CandidateDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_linkLogoutMouseClicked
 
     private void linkVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoteMouseClicked
-        mainFrame.showView(new VoteCandidate(mainFrame, loggedInUsername));
+        mainFrame.showView(new VoterVote(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkVoteMouseClicked
 
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked

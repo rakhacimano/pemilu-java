@@ -20,14 +20,14 @@ import pemilu.ui.auth.Login;
  *
  * @author rakhacimano
  */
-public class VoteCandidate extends javax.swing.JPanel {
+public class VoterVote extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     public DefaultTableModel model;
     private Candidate selectedCandidate;
     private String loggedInUsername; 
 
-    public VoteCandidate(MainFrame mainFrame, String loggedInUsername) {
+    public VoterVote(MainFrame mainFrame, String loggedInUsername) {
         this.mainFrame = mainFrame;
         this.loggedInUsername = loggedInUsername;
 
@@ -298,7 +298,7 @@ public class VoteCandidate extends javax.swing.JPanel {
     }//GEN-LAST:event_linkHomeMouseClicked
 
     private void linkVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoteMouseClicked
-        mainFrame.showView(new VoteCandidate(mainFrame, loggedInUsername));
+        mainFrame.showView(new VoterVote(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkVoteMouseClicked
 
 
