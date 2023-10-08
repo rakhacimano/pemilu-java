@@ -10,14 +10,14 @@ public class Voter extends User {
 
     public boolean vote() {
         if (!hasVoted) {
-            hasVoted = true;
+            hasVoted = true; // Set hasVoted menjadi true setelah vote berhasil
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public boolean hasVoted() {
         return hasVoted;
     }
 }
-

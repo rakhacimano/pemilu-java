@@ -74,7 +74,7 @@ public class TestPemilu {
                                     .orElse(null);
 
                             if (selectedCandidate != null) {
-                                ((Candidate) selectedCandidate).vote();
+                                ((Candidate) selectedCandidate).setVote();
                                 System.out.println("You have voted for " + selectedCandidate.getUsername() + ".");
                             }
                         } else {

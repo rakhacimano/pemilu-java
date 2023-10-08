@@ -38,7 +38,6 @@ public class AdminDashboard extends javax.swing.JPanel {
         linkHome = new javax.swing.JLabel();
         linkVoter = new javax.swing.JLabel();
         linkCandidate = new javax.swing.JLabel();
-        linkResults = new javax.swing.JLabel();
         titlePage = new javax.swing.JLabel();
         labelPage = new javax.swing.JLabel();
 
@@ -88,26 +87,10 @@ public class AdminDashboard extends javax.swing.JPanel {
             }
         });
 
-        linkResults.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkResults.setForeground(new java.awt.Color(230, 230, 230));
-        linkResults.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tally.png"))); // NOI18N
-        linkResults.setText("Results");
-        linkResults.setIconTextGap(8);
-        linkResults.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkResultsMouseClicked(evt);
-            }
-        });
-
         titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         titlePage.setForeground(new java.awt.Color(230, 230, 230));
         titlePage.setText("Pemilu Uganda");
         titlePage.setIconTextGap(8);
-        titlePage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                titlePageMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,7 +100,6 @@ public class AdminDashboard extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titlePage)
-                    .addComponent(linkResults)
                     .addComponent(linkCandidate)
                     .addComponent(linkVoter)
                     .addComponent(linkHome)
@@ -135,9 +117,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                 .addComponent(linkVoter)
                 .addGap(32, 32, 32)
                 .addComponent(linkCandidate)
-                .addGap(32, 32, 32)
-                .addComponent(linkResults)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addComponent(linkLogout)
                 .addGap(24, 24, 24))
         );
@@ -152,43 +132,35 @@ public class AdminDashboard extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addComponent(labelPage)
-                .addGap(195, 195, 195))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(labelPage)
-                .addGap(241, 241, 241))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void linkLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkLogoutMouseClicked
-        mainFrame.showView(new Login(mainFrame));
-    }//GEN-LAST:event_linkLogoutMouseClicked
-
-    private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
-        mainFrame.showView(new AdminDashboard(mainFrame));
-    }//GEN-LAST:event_linkHomeMouseClicked
-
-    private void linkVoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoterMouseClicked
-        mainFrame.showView(new VoterList(mainFrame));
-    }//GEN-LAST:event_linkVoterMouseClicked
 
     private void linkCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkCandidateMouseClicked
         mainFrame.showView(new CandidateList(mainFrame));
     }//GEN-LAST:event_linkCandidateMouseClicked
 
-    private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_linkResultsMouseClicked
+    private void linkVoterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoterMouseClicked
+        mainFrame.showView(new VoterList(mainFrame));
+    }//GEN-LAST:event_linkVoterMouseClicked
 
-    private void titlePageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titlePageMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titlePageMouseClicked
+    private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
+        mainFrame.showView(new AdminDashboard(mainFrame));
+    }//GEN-LAST:event_linkHomeMouseClicked
+
+    private void linkLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkLogoutMouseClicked
+        mainFrame.showView(new Login(mainFrame));
+    }//GEN-LAST:event_linkLogoutMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -197,7 +169,6 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel linkCandidate;
     private javax.swing.JLabel linkHome;
     private javax.swing.JLabel linkLogout;
-    private javax.swing.JLabel linkResults;
     private javax.swing.JLabel linkVoter;
     private javax.swing.JLabel titlePage;
     // End of variables declaration//GEN-END:variables

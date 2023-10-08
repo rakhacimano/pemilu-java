@@ -5,16 +5,16 @@
 package pemilu.ui.voter;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import pemilu.models.Candidate;
 import pemilu.models.User;
+import pemilu.models.Voter;
 import pemilu.services.DatabaseService;
 import pemilu.ui.MainFrame;
-import pemilu.ui.admin.AdminDashboard;
 import pemilu.ui.auth.Login;
-import pemilu.ui.candidate.CandidateList;
 
 /**
  *
@@ -24,9 +24,12 @@ public class VoteCandidate extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     public DefaultTableModel model;
+    private Candidate selectedCandidate;
+    private String loggedInUsername; 
 
-    public VoteCandidate(MainFrame mainFrame) {
+    public VoteCandidate(MainFrame mainFrame, String loggedInUsername) {
         this.mainFrame = mainFrame;
+        this.loggedInUsername = loggedInUsername;
 
         initComponents();
         initTable();
@@ -41,25 +44,24 @@ public class VoteCandidate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEdit = new javax.swing.JButton();
+        btnVote = new javax.swing.JButton();
         labelPage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCandidate = new javax.swing.JTable();
         panelSideBar = new javax.swing.JPanel();
         linkLogout = new javax.swing.JLabel();
-        linkCandidate = new javax.swing.JLabel();
-        linkResults = new javax.swing.JLabel();
-        titlePage = new javax.swing.JLabel();
         linkHome = new javax.swing.JLabel();
+        linkVote = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
 
-        btnEdit.setBackground(new java.awt.Color(102, 255, 102));
-        btnEdit.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        btnEdit.setForeground(new java.awt.Color(230, 230, 230));
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea.png"))); // NOI18N
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnVote.setBackground(new java.awt.Color(102, 255, 102));
+        btnVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        btnVote.setForeground(new java.awt.Color(230, 230, 230));
+        btnVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea.png"))); // NOI18N
+        btnVote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnVoteActionPerformed(evt);
             }
         });
 
@@ -119,38 +121,6 @@ public class VoteCandidate extends javax.swing.JPanel {
             }
         });
 
-        linkCandidate.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkCandidate.setForeground(new java.awt.Color(230, 230, 230));
-        linkCandidate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user-pen.png"))); // NOI18N
-        linkCandidate.setText("Candidate");
-        linkCandidate.setIconTextGap(8);
-        linkCandidate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkCandidateMouseClicked(evt);
-            }
-        });
-
-        linkResults.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkResults.setForeground(new java.awt.Color(230, 230, 230));
-        linkResults.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tally.png"))); // NOI18N
-        linkResults.setText("Results");
-        linkResults.setIconTextGap(8);
-        linkResults.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkResultsMouseClicked(evt);
-            }
-        });
-
-        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        titlePage.setForeground(new java.awt.Color(230, 230, 230));
-        titlePage.setText("Pemilu Uganda");
-        titlePage.setIconTextGap(8);
-        titlePage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                titlePageMouseClicked(evt);
-            }
-        });
-
         linkHome.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkHome.setForeground(new java.awt.Color(230, 230, 230));
         linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
@@ -162,6 +132,22 @@ public class VoteCandidate extends javax.swing.JPanel {
             }
         });
 
+        linkVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        linkVote.setForeground(new java.awt.Color(230, 230, 230));
+        linkVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea-white.png"))); // NOI18N
+        linkVote.setText("Vote");
+        linkVote.setIconTextGap(8);
+        linkVote.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkVoteMouseClicked(evt);
+            }
+        });
+
+        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        titlePage.setForeground(new java.awt.Color(230, 230, 230));
+        titlePage.setText("Pemilu Uganda");
+        titlePage.setIconTextGap(8);
+
         javax.swing.GroupLayout panelSideBarLayout = new javax.swing.GroupLayout(panelSideBar);
         panelSideBar.setLayout(panelSideBarLayout);
         panelSideBarLayout.setHorizontalGroup(
@@ -169,10 +155,9 @@ public class VoteCandidate extends javax.swing.JPanel {
             .addGroup(panelSideBarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(linkHome)
                     .addComponent(titlePage)
-                    .addComponent(linkResults)
-                    .addComponent(linkCandidate)
+                    .addComponent(linkVote)
+                    .addComponent(linkHome)
                     .addComponent(linkLogout))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -184,10 +169,8 @@ public class VoteCandidate extends javax.swing.JPanel {
                 .addGap(48, 48, 48)
                 .addComponent(linkHome)
                 .addGap(32, 32, 32)
-                .addComponent(linkCandidate)
-                .addGap(32, 32, 32)
-                .addComponent(linkResults)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addComponent(linkVote)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(linkLogout)
                 .addGap(24, 24, 24))
         );
@@ -214,7 +197,7 @@ public class VoteCandidate extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVote, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
@@ -230,7 +213,7 @@ public class VoteCandidate extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVote, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -248,10 +231,40 @@ public class VoteCandidate extends javax.swing.JPanel {
             }
         }
     }
-    
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        
-    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnVoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoteActionPerformed
+        if (selectedCandidate != null) {
+            // Cek apakah yang sedang login adalah seorang Voter
+            String username = loggedInUsername;
+            User loggedInUser = DatabaseService.getUserByUsername(username);
+            if (loggedInUser instanceof Voter) {
+                Voter voter = (Voter) loggedInUser;
+
+                // Cek apakah Voter ini belum pernah melakukan vote
+                if (!voter.hasVoted()) {
+                    // Pastikan yang dipilih adalah seorang Candidate
+                    if (selectedCandidate instanceof Candidate) {
+                        Candidate candidate = (Candidate) selectedCandidate;
+
+                        // Lakukan vote dan tambahkan suara untuk kandidat
+                        candidate.setVote();
+
+                        // Set hasVoted menjadi true untuk Voter yang telah melakukan vote
+                        voter.vote();
+
+                        // Tampilkan pesan berhasil
+                        JOptionPane.showMessageDialog(this, "Vote telah berhasil dilakukan kepada kandidat dengan username '" + selectedCandidate.getUsername() + "'.", "Vote Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "User dengan username '" + selectedCandidate.getUsername() + "' bukanlah seorang kandidat.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Anda sudah melakukan vote.", "Vote Gagal", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Anda tidak diizinkan untuk melakukan vote.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnVoteActionPerformed
 
     private void tableCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCandidateMouseClicked
         int selectedRow = tableCandidate.getSelectedRow();
@@ -261,6 +274,14 @@ public class VoteCandidate extends javax.swing.JPanel {
 
             String nama = model.getValueAt(selectedRow, 0).toString();
             String username = model.getValueAt(selectedRow, 1).toString();
+
+            // Cari candidate yang sesuai dalam koleksi candidates
+            User user = DatabaseService.getUserByUsername(username);
+            if (user instanceof Candidate) {
+                selectedCandidate = (Candidate) user;
+            } else {
+                JOptionPane.showMessageDialog(this, "User dengan username '" + username + "' bukanlah seorang kandidat.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_tableCandidateMouseClicked
 
@@ -268,36 +289,27 @@ public class VoteCandidate extends javax.swing.JPanel {
         mainFrame.showView(new Login(mainFrame));
     }//GEN-LAST:event_linkLogoutMouseClicked
 
-    private void linkCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkCandidateMouseClicked
-        mainFrame.showView(new CandidateList(mainFrame));
-    }//GEN-LAST:event_linkCandidateMouseClicked
-
-    private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_linkResultsMouseClicked
-
-    private void titlePageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titlePageMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titlePageMouseClicked
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
-        mainFrame.showView(new AdminDashboard(mainFrame));
+        mainFrame.showView(new VoterDashboard(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkHomeMouseClicked
+
+    private void linkVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoteMouseClicked
+        mainFrame.showView(new VoteCandidate(mainFrame, loggedInUsername));
+    }//GEN-LAST:event_linkVoteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnVote;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPage;
-    private javax.swing.JLabel linkCandidate;
     private javax.swing.JLabel linkHome;
     private javax.swing.JLabel linkLogout;
-    private javax.swing.JLabel linkResults;
+    private javax.swing.JLabel linkVote;
     private javax.swing.JPanel panelSideBar;
     private javax.swing.JTable tableCandidate;
     private javax.swing.JLabel titlePage;

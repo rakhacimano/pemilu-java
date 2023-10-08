@@ -22,6 +22,7 @@ import pemilu.ui.voter.VoterDashboard;
 public class Login extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    public String loggedInUsername;
 
     public Login(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -128,15 +129,14 @@ public class Login extends javax.swing.JPanel {
             if (loggedInUser instanceof Admin) {
                 mainFrame.showView(new AdminDashboard(mainFrame));
             } else if (loggedInUser instanceof Voter) {
-                mainFrame.showView(new VoterDashboard(mainFrame));
+                mainFrame.showView(new VoterDashboard(mainFrame, username)); // Mengirim username yang sedang login
             } else if (loggedInUser instanceof Candidate) {
-                mainFrame.showView(new CandidateDashboard(mainFrame));
+                mainFrame.showView(new CandidateDashboard(mainFrame, username));
             }
         } else {
             JOptionPane.showMessageDialog(this, "Login gagal. Username atau password salah.");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

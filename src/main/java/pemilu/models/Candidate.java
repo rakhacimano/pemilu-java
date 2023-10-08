@@ -8,7 +8,7 @@ public class Candidate extends User {
         this.votes = 0;
     }
 
-    public void vote() {
+    public void setVote() {
         this.votes++;
     }
 

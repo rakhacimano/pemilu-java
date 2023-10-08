@@ -6,7 +6,6 @@ package pemilu.ui.voter;
 
 import pemilu.ui.MainFrame;
 import pemilu.ui.auth.Login;
-import pemilu.ui.candidate.CandidateList;
 
 /**
  *
@@ -15,11 +14,15 @@ import pemilu.ui.candidate.CandidateList;
 public class VoterDashboard extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    private String loggedInUsername;
     
-    public VoterDashboard(MainFrame mainFrame) {
+    public VoterDashboard(MainFrame mainFrame, String loggedInUsername) {
         this.mainFrame = mainFrame;
+        this.loggedInUsername = loggedInUsername;
         
         initComponents();
+        
+        infoLoggedInUsername.setText(loggedInUsername);
     }
 
     /**
@@ -35,9 +38,9 @@ public class VoterDashboard extends javax.swing.JPanel {
         panelSideBar = new javax.swing.JPanel();
         linkLogout = new javax.swing.JLabel();
         linkVote = new javax.swing.JLabel();
-        linkResults = new javax.swing.JLabel();
-        titlePage = new javax.swing.JLabel();
         linkHome = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
+        infoLoggedInUsername = new javax.swing.JTextField();
 
         labelPage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 24)); // NOI18N
         labelPage.setForeground(new java.awt.Color(230, 230, 230));
@@ -72,27 +75,6 @@ public class VoterDashboard extends javax.swing.JPanel {
             }
         });
 
-        linkResults.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkResults.setForeground(new java.awt.Color(230, 230, 230));
-        linkResults.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tally.png"))); // NOI18N
-        linkResults.setText("Results");
-        linkResults.setIconTextGap(8);
-        linkResults.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkResultsMouseClicked(evt);
-            }
-        });
-
-        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        titlePage.setForeground(new java.awt.Color(230, 230, 230));
-        titlePage.setText("Pemilu Uganda");
-        titlePage.setIconTextGap(8);
-        titlePage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                titlePageMouseClicked(evt);
-            }
-        });
-
         linkHome.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkHome.setForeground(new java.awt.Color(230, 230, 230));
         linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
@@ -104,6 +86,11 @@ public class VoterDashboard extends javax.swing.JPanel {
             }
         });
 
+        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        titlePage.setForeground(new java.awt.Color(230, 230, 230));
+        titlePage.setText("Pemilu Uganda");
+        titlePage.setIconTextGap(8);
+
         javax.swing.GroupLayout panelSideBarLayout = new javax.swing.GroupLayout(panelSideBar);
         panelSideBar.setLayout(panelSideBarLayout);
         panelSideBarLayout.setHorizontalGroup(
@@ -111,9 +98,8 @@ public class VoterDashboard extends javax.swing.JPanel {
             .addGroup(panelSideBarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(linkHome)
                     .addComponent(titlePage)
-                    .addComponent(linkResults)
+                    .addComponent(linkHome)
                     .addComponent(linkVote)
                     .addComponent(linkLogout))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -127,12 +113,16 @@ public class VoterDashboard extends javax.swing.JPanel {
                 .addComponent(linkHome)
                 .addGap(32, 32, 32)
                 .addComponent(linkVote)
-                .addGap(32, 32, 32)
-                .addComponent(linkResults)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addComponent(linkLogout)
                 .addGap(24, 24, 24))
         );
+
+        infoLoggedInUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoLoggedInUsernameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,8 +131,10 @@ public class VoterDashboard extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(panelSideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(labelPage)
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelPage)
+                    .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +142,8 @@ public class VoterDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(labelPage)
+                .addGap(18, 18, 18)
+                .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,27 +157,23 @@ public class VoterDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_linkLogoutMouseClicked
 
     private void linkVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkVoteMouseClicked
-        mainFrame.showView(new VoteCandidate(mainFrame));
+        mainFrame.showView(new VoteCandidate(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkVoteMouseClicked
-
-    private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_linkResultsMouseClicked
-
-    private void titlePageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titlePageMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titlePageMouseClicked
 
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_linkHomeMouseClicked
 
+    private void infoLoggedInUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoLoggedInUsernameActionPerformed
+        
+    }//GEN-LAST:event_infoLoggedInUsernameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField infoLoggedInUsername;
     private javax.swing.JLabel labelPage;
     private javax.swing.JLabel linkHome;
     private javax.swing.JLabel linkLogout;
-    private javax.swing.JLabel linkResults;
     private javax.swing.JLabel linkVote;
     private javax.swing.JPanel panelSideBar;
     private javax.swing.JLabel titlePage;

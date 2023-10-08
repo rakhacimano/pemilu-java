@@ -46,10 +46,9 @@ public class VoterList extends javax.swing.JPanel {
         panelSideBar = new javax.swing.JPanel();
         linkLogout = new javax.swing.JLabel();
         linkCandidate = new javax.swing.JLabel();
-        linkResults = new javax.swing.JLabel();
-        titlePage = new javax.swing.JLabel();
         linkHome = new javax.swing.JLabel();
         linkVoter = new javax.swing.JLabel();
+        titlePage = new javax.swing.JLabel();
         labelPage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableVoter = new javax.swing.JTable();
@@ -86,27 +85,6 @@ public class VoterList extends javax.swing.JPanel {
             }
         });
 
-        linkResults.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkResults.setForeground(new java.awt.Color(230, 230, 230));
-        linkResults.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tally.png"))); // NOI18N
-        linkResults.setText("Results");
-        linkResults.setIconTextGap(8);
-        linkResults.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkResultsMouseClicked(evt);
-            }
-        });
-
-        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        titlePage.setForeground(new java.awt.Color(230, 230, 230));
-        titlePage.setText("Pemilu Uganda");
-        titlePage.setIconTextGap(8);
-        titlePage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                titlePageMouseClicked(evt);
-            }
-        });
-
         linkHome.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkHome.setForeground(new java.awt.Color(230, 230, 230));
         linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
@@ -129,6 +107,11 @@ public class VoterList extends javax.swing.JPanel {
             }
         });
 
+        titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
+        titlePage.setForeground(new java.awt.Color(230, 230, 230));
+        titlePage.setText("Pemilu Uganda");
+        titlePage.setIconTextGap(8);
+
         javax.swing.GroupLayout panelSideBarLayout = new javax.swing.GroupLayout(panelSideBar);
         panelSideBar.setLayout(panelSideBarLayout);
         panelSideBarLayout.setHorizontalGroup(
@@ -136,10 +119,9 @@ public class VoterList extends javax.swing.JPanel {
             .addGroup(panelSideBarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titlePage)
                     .addComponent(linkVoter)
                     .addComponent(linkHome)
-                    .addComponent(titlePage)
-                    .addComponent(linkResults)
                     .addComponent(linkCandidate)
                     .addComponent(linkLogout))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -155,9 +137,7 @@ public class VoterList extends javax.swing.JPanel {
                 .addComponent(linkVoter)
                 .addGap(32, 32, 32)
                 .addComponent(linkCandidate)
-                .addGap(32, 32, 32)
-                .addComponent(linkResults)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(linkLogout)
                 .addGap(24, 24, 24))
         );
@@ -339,14 +319,6 @@ public class VoterList extends javax.swing.JPanel {
         mainFrame.showView(new CandidateList(mainFrame));
     }//GEN-LAST:event_linkCandidateMouseClicked
 
-    private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_linkResultsMouseClicked
-
-    private void titlePageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titlePageMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titlePageMouseClicked
-
     private void labelPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPageMouseClicked
         mainFrame.showView(new Login(mainFrame));
     }//GEN-LAST:event_labelPageMouseClicked
@@ -485,7 +457,6 @@ public class VoterList extends javax.swing.JPanel {
     private javax.swing.JLabel linkCandidate;
     private javax.swing.JLabel linkHome;
     private javax.swing.JLabel linkLogout;
-    private javax.swing.JLabel linkResults;
     private javax.swing.JLabel linkVoter;
     private javax.swing.JPanel panelSideBar;
     private javax.swing.JTable tableVoter;

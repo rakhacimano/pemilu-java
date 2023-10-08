@@ -54,7 +54,6 @@ public class CandidateList extends javax.swing.JPanel {
         linkLogout = new javax.swing.JLabel();
         linkHome = new javax.swing.JLabel();
         linkCandidate = new javax.swing.JLabel();
-        linkResults = new javax.swing.JLabel();
         titlePage = new javax.swing.JLabel();
         linkVoter = new javax.swing.JLabel();
         btnEdit = new javax.swing.JButton();
@@ -97,14 +96,14 @@ public class CandidateList extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NAME", "USERNAME", "PASSWORD"
+                "NAME", "USERNAME", "PASSWORD", "VOTES"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -167,26 +166,10 @@ public class CandidateList extends javax.swing.JPanel {
             }
         });
 
-        linkResults.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        linkResults.setForeground(new java.awt.Color(230, 230, 230));
-        linkResults.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tally.png"))); // NOI18N
-        linkResults.setText("Results");
-        linkResults.setIconTextGap(8);
-        linkResults.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                linkResultsMouseClicked(evt);
-            }
-        });
-
         titlePage.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         titlePage.setForeground(new java.awt.Color(230, 230, 230));
         titlePage.setText("Pemilu Uganda");
         titlePage.setIconTextGap(8);
-        titlePage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                titlePageMouseClicked(evt);
-            }
-        });
 
         linkVoter.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkVoter.setForeground(new java.awt.Color(230, 230, 230));
@@ -208,7 +191,6 @@ public class CandidateList extends javax.swing.JPanel {
                 .addGroup(panelSideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(linkVoter)
                     .addComponent(titlePage)
-                    .addComponent(linkResults)
                     .addComponent(linkCandidate)
                     .addComponent(linkHome)
                     .addComponent(linkLogout))
@@ -225,8 +207,6 @@ public class CandidateList extends javax.swing.JPanel {
                 .addComponent(linkVoter)
                 .addGap(32, 32, 32)
                 .addComponent(linkCandidate)
-                .addGap(32, 32, 32)
-                .addComponent(linkResults)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(linkLogout)
                 .addGap(24, 24, 24))
@@ -306,16 +286,14 @@ public class CandidateList extends javax.swing.JPanel {
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,7 +304,7 @@ public class CandidateList extends javax.swing.JPanel {
         for (User user : users) {
             if (user instanceof Candidate) {
                 Candidate candidate = (Candidate) user;
-                model.addRow(new Object[]{candidate.getName(), candidate.getUsername(), candidate.getPassword()}); // Ganti dengan data yang ingin Anda tampilkan
+                model.addRow(new Object[]{candidate.getName(), candidate.getUsername(), candidate.getPassword(), candidate.getVotes()}); // Ganti dengan data yang ingin Anda tampilkan
             }
         }
     }
@@ -390,14 +368,6 @@ public class CandidateList extends javax.swing.JPanel {
     private void linkCandidateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkCandidateMouseClicked
         mainFrame.showView(new CandidateList(mainFrame));
     }//GEN-LAST:event_linkCandidateMouseClicked
-
-    private void linkResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkResultsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_linkResultsMouseClicked
-
-    private void titlePageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titlePageMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titlePageMouseClicked
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int selectedRow = tableCandidate.getSelectedRow();
@@ -486,7 +456,6 @@ public class CandidateList extends javax.swing.JPanel {
     private javax.swing.JLabel linkCandidate;
     private javax.swing.JLabel linkHome;
     private javax.swing.JLabel linkLogout;
-    private javax.swing.JLabel linkResults;
     private javax.swing.JLabel linkVoter;
     private javax.swing.JPanel panelSideBar;
     private javax.swing.JTable tableCandidate;

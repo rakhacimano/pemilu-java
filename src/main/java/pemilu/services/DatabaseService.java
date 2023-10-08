@@ -1,7 +1,6 @@
 package pemilu.services;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import pemilu.models.User;
 
@@ -41,17 +40,15 @@ public class DatabaseService {
     }
 
     public static void deleteUserByUsername(String usernameToDelete) {
-        // Buat iterator untuk ArrayList users
-        Iterator<User> iterator = users.iterator();
+        List<User> usersToRemove = new ArrayList<>();
 
-        // Iterasi melalui ArrayList untuk mencari pengguna dengan username yang sesuai
-        while (iterator.hasNext()) {
-            User user = iterator.next();
+        for (User user : users) {
             if (user.getUsername().equals(usernameToDelete)) {
-                // Hapus pengguna dari ArrayList jika username cocok
-                iterator.remove();
+                usersToRemove.add(user);
             }
         }
+
+        users.removeAll(usersToRemove);
     }
 
     public static boolean isUsernameUnique(String username) {
