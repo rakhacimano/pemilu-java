@@ -21,7 +21,6 @@ public class AdminDashboard extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
 
         initComponents();
-        linkHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-window.png"))); // NOI18N
     }
 
     /**

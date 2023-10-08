@@ -22,7 +22,6 @@ import pemilu.ui.voter.VoterDashboard;
 public class Login extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
-    public String loggedInUsername;
 
     public Login(MainFrame mainFrame) {
         this.mainFrame = mainFrame;

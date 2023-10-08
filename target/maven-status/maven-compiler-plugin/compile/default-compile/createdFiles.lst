@@ -34,7 +34,6 @@ pemilu\ui\voter\VoterDashboard$1.class
 pemilu\ui\voter\VoterList$4.class
 pemilu\services\DatabaseService.class
 pemilu\ui\voter\VoteCandidate$1.class
-pemilu\ui\voter\VoterDashboard$5.class
 pemilu\ui\voter\VoteCandidate.class
 pemilu\ui\candidate\CandidateDashboard$1.class
 pemilu\ui\auth\Login.class

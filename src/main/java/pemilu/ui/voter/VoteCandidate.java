@@ -55,10 +55,10 @@ public class VoteCandidate extends javax.swing.JPanel {
         titlePage = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
 
-        btnVote.setBackground(new java.awt.Color(102, 255, 102));
+        btnVote.setBackground(new java.awt.Color(0, 153, 204));
         btnVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         btnVote.setForeground(new java.awt.Color(230, 230, 230));
-        btnVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea.png"))); // NOI18N
+        btnVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         btnVote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoteActionPerformed(evt);
@@ -134,7 +134,7 @@ public class VoteCandidate extends javax.swing.JPanel {
 
         linkVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkVote.setForeground(new java.awt.Color(230, 230, 230));
-        linkVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea-white.png"))); // NOI18N
+        linkVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         linkVote.setText("Vote");
         linkVote.setIconTextGap(8);
         linkVote.addMouseListener(new java.awt.event.MouseAdapter() {

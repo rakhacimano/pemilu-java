@@ -66,7 +66,7 @@ public class VoterDashboard extends javax.swing.JPanel {
 
         linkVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
         linkVote.setForeground(new java.awt.Color(230, 230, 230));
-        linkVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vote-yea-white.png"))); // NOI18N
+        linkVote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
         linkVote.setText("Vote");
         linkVote.setIconTextGap(8);
         linkVote.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,11 +118,7 @@ public class VoterDashboard extends javax.swing.JPanel {
                 .addGap(24, 24, 24))
         );
 
-        infoLoggedInUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoLoggedInUsernameActionPerformed(evt);
-            }
-        });
+        infoLoggedInUsername.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,8 +129,8 @@ public class VoterDashboard extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPage)
-                    .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(306, Short.MAX_VALUE))
+                    .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +139,7 @@ public class VoterDashboard extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addComponent(labelPage)
                 .addGap(18, 18, 18)
-                .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infoLoggedInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,10 +159,6 @@ public class VoterDashboard extends javax.swing.JPanel {
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_linkHomeMouseClicked
-
-    private void infoLoggedInUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoLoggedInUsernameActionPerformed
-        
-    }//GEN-LAST:event_infoLoggedInUsernameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

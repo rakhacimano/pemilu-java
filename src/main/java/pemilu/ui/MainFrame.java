@@ -34,7 +34,6 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-
     }
 
     /**

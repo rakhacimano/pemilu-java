@@ -121,7 +121,7 @@ public class CandidateList extends javax.swing.JPanel {
         tableCandidate.getColumnModel().getColumn(0).setCellRenderer(centerRenderer); // Kolom 0 (Nama)
         tableCandidate.getColumnModel().getColumn(1).setCellRenderer(centerRenderer); // Kolom 1 (Username)
         tableCandidate.getColumnModel().getColumn(2).setCellRenderer(centerRenderer); // Kolom 2 (Password)
-        tableCandidate.setRowHeight(32);
+        tableCandidate.getColumnModel().getColumn(3).setCellRenderer(centerRenderer); // Kolom 3 (Votes)
         tableCandidate.setRowHeight(32);
         tableCandidate.setSurrendersFocusOnKeystroke(true);
         tableCandidate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -329,7 +329,7 @@ public class CandidateList extends javax.swing.JPanel {
             if (DatabaseService.addUser(candidate)) {
                 // Jika berhasil disimpan ke DatabaseService, tambahkan ke model tabel
                 model = (DefaultTableModel) tableCandidate.getModel();
-                model.addRow(new Object[]{candidate.getName(), candidate.getUsername(), candidate.getPassword()});
+                model.addRow(new Object[]{candidate.getName(), candidate.getUsername(), candidate.getPassword(), candidate.getVotes()});
             } else {
                 JOptionPane.showMessageDialog(null, "Username '" + username + "' sudah digunakan. Silakan pilih username lain.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
