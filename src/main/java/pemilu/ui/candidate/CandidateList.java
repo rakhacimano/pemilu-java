@@ -16,7 +16,7 @@ import pemilu.services.PasswordGenerator;
 import pemilu.ui.MainFrame;
 import pemilu.ui.admin.AdminDashboard;
 import pemilu.ui.auth.Login;
-import pemilu.ui.voter.VoterList;
+import pemilu.ui.voter.VoterList;   
 
 /**
  *

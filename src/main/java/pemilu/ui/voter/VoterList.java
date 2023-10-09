@@ -13,10 +13,10 @@ import pemilu.services.DatabaseService;
 import pemilu.services.PasswordGenerator;
 import pemilu.ui.MainFrame;
 import pemilu.ui.auth.Login;
+import pemilu.ui.candidate.CandidateList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import pemilu.ui.candidate.CandidateList;
 
 /**
  *
@@ -308,7 +308,6 @@ public class VoterList extends javax.swing.JPanel {
                 model.addRow(new Object[]{voter.getName(), voter.getUsername(), voter.getPassword()}); // Ganti dengan data yang ingin Anda tampilkan
             }
         }
-
     }
 
     private void linkLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkLogoutMouseClicked
@@ -320,7 +319,7 @@ public class VoterList extends javax.swing.JPanel {
     }//GEN-LAST:event_linkCandidateMouseClicked
 
     private void labelPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelPageMouseClicked
-        mainFrame.showView(new Login(mainFrame));
+        mainFrame.showView(new VoterList(mainFrame));
     }//GEN-LAST:event_labelPageMouseClicked
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

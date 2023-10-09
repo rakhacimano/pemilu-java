@@ -21,6 +21,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
+        Admin admin = new Admin("Admin", "admin", "admin");
+        if (!DatabaseService.addUser(admin)) {
+            JOptionPane.showMessageDialog(null, "Username 'admin' sudah digunakan. Silakan pilih username lain.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
         
         setTitle("Pemilu Uganda 2023");
 
@@ -81,11 +85,6 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
-
-                Admin admin = new Admin("Admin", "admin", "admin");
-                if (!DatabaseService.addUser(admin)) {
-                    JOptionPane.showMessageDialog(null, "Username 'admin' sudah digunakan. Silakan pilih username lain.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-                }
             }
         });
     }

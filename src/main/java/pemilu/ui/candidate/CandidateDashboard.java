@@ -140,7 +140,7 @@ public class CandidateDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_linkVoteMouseClicked
 
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
-        // TODO add your handling code here:
+        mainFrame.showView(new CandidateDashboard(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkHomeMouseClicked
 
 

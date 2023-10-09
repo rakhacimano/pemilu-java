@@ -53,7 +53,6 @@ public class VoterVote extends javax.swing.JPanel {
         linkHome = new javax.swing.JLabel();
         linkVote = new javax.swing.JLabel();
         titlePage = new javax.swing.JLabel();
-        btnCancel = new javax.swing.JButton();
 
         btnVote.setBackground(new java.awt.Color(0, 153, 204));
         btnVote.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
@@ -175,16 +174,6 @@ public class VoterVote extends javax.swing.JPanel {
                 .addGap(24, 24, 24))
         );
 
-        btnCancel.setBackground(new java.awt.Color(204, 204, 204));
-        btnCancel.setFont(new java.awt.Font("Plus Jakarta Sans", 1, 14)); // NOI18N
-        btnCancel.setForeground(new java.awt.Color(230, 230, 230));
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cross.png"))); // NOI18N
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,9 +185,7 @@ public class VoterVote extends javax.swing.JPanel {
                     .addComponent(labelPage)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVote, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnVote, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
@@ -214,8 +201,6 @@ public class VoterVote extends javax.swing.JPanel {
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVote, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -272,7 +257,6 @@ public class VoterVote extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             DefaultTableModel model = (DefaultTableModel) tableCandidate.getModel();
 
-            String nama = model.getValueAt(selectedRow, 0).toString();
             String username = model.getValueAt(selectedRow, 1).toString();
 
             // Cari candidate yang sesuai dalam koleksi candidates
@@ -289,10 +273,6 @@ public class VoterVote extends javax.swing.JPanel {
         mainFrame.showView(new Login(mainFrame));
     }//GEN-LAST:event_linkLogoutMouseClicked
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelActionPerformed
-
     private void linkHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkHomeMouseClicked
         mainFrame.showView(new VoterDashboard(mainFrame, loggedInUsername));
     }//GEN-LAST:event_linkHomeMouseClicked
@@ -303,7 +283,6 @@ public class VoterVote extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnVote;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPage;
